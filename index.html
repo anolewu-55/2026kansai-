@@ -1,38 +1,571 @@
-<!-- ... existing code ... -->
-                <div class="bg-rose-50/60 p-3 rounded-xl border border-rose-100 text-slate-700 space-y-1.5">
-                    <p class="font-bold text-rose-900"><i class="fa-solid fa-ticket text-rose-500"></i> 核心交通票券：</p>
-                    <p><b>JR 關西廣域鐵路周遊券 5日券</b>（8/6 - 8/10 啟用）</p>
-                    <p class="text-[11px] text-slate-500">• 含山陽新幹線（岡山↔新大阪指定席）、Haruka 特急、倉敷/兒島/神戶/京都 JR 電車全包。</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 關西山陽暑假親子避暑 7 日遊手冊</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter / Noto Sans TC -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FFF7F5; /* 水蜜桃白底 */
+            color: #4A3E3D;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .peach-bg-gradient {
+            background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+        }
+        .peach-card-gradient {
+            background: linear-gradient(135deg, #FFF3F0 0%, #FFEBE5 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-12">
+
+    <!-- Top Header & Navigation Bar (Styled like user reference) -->
+    <header class="sticky top-0 z-50 bg-[#3D2C2E] text-white shadow-md">
+        <!-- Main Title Bar -->
+        <div class="px-4 pt-3 pb-2 flex items-center justify-between border-b border-white/10">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl">🍑</span>
+                <h1 class="text-base font-bold tracking-wide">JP 2026 關西山陽避暑手冊</h1>
+            </div>
+            <span class="text-[11px] bg-rose-500/80 text-rose-100 px-2.5 py-0.5 rounded-full font-medium">2家6人親子團</span>
+        </div>
+
+        <!-- Horizontal Scrollable Date & Category Pills -->
+        <div class="px-3 py-2.5 overflow-x-auto hide-scrollbar flex items-center space-x-2 text-xs">
+            <!-- Summary Tab -->
+            <button onclick="switchTab('overview')" id="nav-overview" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold transition-all bg-white text-[#3D2C2E] shadow-sm">
+                📋 概要與機票
+            </button>
+            <button onclick="switchTab('heat')" id="nav-heat" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                ☀️ 避暑策略
+            </button>
+
+            <!-- Date Tabs -->
+            <button onclick="switchTab('day1')" id="nav-day1" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/05 (三)
+            </button>
+            <button onclick="switchTab('day2')" id="nav-day2" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/06 (四)
+            </button>
+            <button onclick="switchTab('day3')" id="nav-day3" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/07 (五)
+            </button>
+            <button onclick="switchTab('day4')" id="nav-day4" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/08 (六)
+            </button>
+            <button onclick="switchTab('day5')" id="nav-day5" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/09 (日)
+            </button>
+            <button onclick="switchTab('day6')" id="nav-day6" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/10 (一)
+            </button>
+            <button onclick="switchTab('day7')" id="nav-day7" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                8/11 (二)
+            </button>
+
+            <!-- Extra Tabs -->
+            <button onclick="switchTab('food')" id="nav-food" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                🍱 美食餐廳
+            </button>
+            <button onclick="switchTab('shopping')" id="nav-shopping" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                🛍️ 購物伴手禮
+            </button>
+            <button onclick="switchTab('packing')" id="nav-packing" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
+                🧳 準備清單
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-3xl mx-auto w-full px-4 pt-4 flex-grow">
+
+        <!-- Tab: Overview & Flight Info -->
+        <section id="tab-content-overview" class="tab-page space-y-4">
+            <!-- Top Announcement Banner -->
+            <div class="bg-rose-500 text-white p-3 rounded-2xl shadow-sm flex items-center space-x-3">
+                <div class="bg-white/20 p-2 rounded-xl text-lg"><i class="fa-solid fa-plane-departure"></i></div>
+                <div>
+                    <h2 class="font-bold text-sm">2026 盛夏關西山陽避暑 7 日遊</h2>
+                    <p class="text-xs text-rose-100">旅行日期：2026/08/05 (三) ～ 2026/08/11 (二)</p>
                 </div>
+            </div>
 
-                <!-- 8/07 新幹線已劃位車票資訊 -->
-                <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-slate-700 space-y-1">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-emerald-900"><i class="fa-solid fa-train text-emerald-600"></i> 8/07 山陽新幹線劃位憑證</span>
-                        <span class="text-[10px] bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold">已劃位成功</span>
+            <!-- Flights Information Card -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-3">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-ticket text-rose-500"></i> ✈️ 台灣虎航 (Tigerair) 來回機票資訊
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <!-- Outbound -->
+                    <div class="bg-orange-50/70 p-3 rounded-xl border border-orange-100 space-y-1">
+                        <div class="flex justify-between items-center text-orange-900 font-bold">
+                            <span>去程：高雄 (KHH) ➔ 岡山 (OKJ)</span>
+                            <span class="bg-orange-200 text-orange-800 px-1.5 py-0.5 rounded text-[10px]">8/05 (三)</span>
+                        </div>
+                        <p class="text-slate-600">航班時間：依虎航最新航班時刻為準</p>
+                        <p class="text-slate-500 text-[11px]">抵達後搭乘利木津巴士直達 JR 岡山站（30分鐘）。</p>
                     </div>
-                    <p class="text-slate-800 font-bold text-xs mt-1">班次：Nozomi 34 號（岡山 15:20 ➔ 新大阪 16:04）</p>
-                    <p class="text-slate-600 text-[11px]">座位：<b>5號車 3A / 3B / 3C</b> 與 <b>4A / 4B / 4C</b>（全團 6 人連號前後排）</p>
+                    <!-- Inbound -->
+                    <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-100 space-y-1">
+                        <div class="flex justify-between items-center text-rose-900 font-bold">
+                            <span>回程：關西 (KIX) ➔ 高雄 (KHH)</span>
+                            <span class="bg-rose-200 text-rose-800 px-1.5 py-0.5 rounded text-[10px]">8/11 (二)</span>
+                        </div>
+                        <p class="text-slate-600">航班號碼：<b>IT 213 (11:15 起飛)</b></p>
+                        <p class="text-slate-500 text-[11px]">前一晚入住日航關西機場飯店，08:45 辦理報到。</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="bg-slate-50 p-3 rounded-xl border space-y-1.5">
-<!-- ... existing code ... -->
-                    <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200">
-                        <p class="font-bold text-amber-900">12:45 - 15:00 午餐與採買避暑</p>
-                        <p class="text-amber-800">返回岡山站取行李，於 AEON Mall 岡山享用午餐與最後水果採買。</p>
-                    </div>
-                    <div class="bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
-                        <p class="font-bold text-indigo-900">15:20 - 16:04 山陽新幹線移動 (Nozomi 34 號)</p>
-                        <p class="text-indigo-800">JR 岡山站搭乘 Nozomi 34 號直達 JR 新大阪站（44 分鐘）➔ 轉地鐵御堂筋線至難波站。</p>
-                        <p class="text-indigo-900 font-bold bg-indigo-100/70 p-1.5 rounded mt-1.5 text-[11px]">🎫 已劃位：5號車 3A / 3B / 3C 及 4A / 4B / 4C（前後排連號共 6 席）</p>
-                    </div>
-                    <div>
-                        <p class="font-bold text-rose-900">16:45 飯店 Check-in & 傍晚商圈</p>
-<!-- ... existing code ... -->
-```
+            <!-- Shinkansen Ticket Confirmation Card (Updated) -->
+            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-train text-emerald-600"></i> 8/07 山陽新幹線已劃位車票憑證</span>
+                    <span class="text-[11px] bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold">已劃位成功</span>
+                </div>
+                <div class="text-xs space-y-1 text-slate-700">
+                    <p class="font-bold text-slate-800">車次：Nozomi 34 號 (岡山 15:20 發 ➔ 新大阪 16:04 抵)</p>
+                    <p class="text-slate-600">座位：<b>5號車 3A / 3B / 3C</b> 與 <b>4A / 4B / 4C</b>（全團 6 人連號前後排）</p>
+                    <p class="text-slate-500 text-[11px]">• 8/05 抵達岡山站綠色售票機領取實體車票即可進站。</p>
+                </div>
+            </div>
 
-### 📋 更新小結：
-1. **行程概要卡片：** 新增綠色的 **「8/07 山陽新幹線劃位憑證」**，紀錄了 Nozomi 34 號 15:20 發車時間與 5 號車 3A~3C、4A~4C 車票細節。
-2. **Day 3 時間軸精準調整：** 搭車時間由原本推估的 15:30 調整為精確的 **15:20 岡山開車 ➔ 16:04 抵達新大阪**，並附上劃位資訊，旅行時查閱更輕鬆方便！
+            <!-- Members & JR Pass Overview -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-3">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-users text-rose-500"></i> 成員票種與 JR Pass 5日券說明
+                </h3>
+                <p class="text-xs text-slate-600">启用日期：<b>2026/08/06 (四) ～ 2026/08/10 (一)</b>（連續 5 日）</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left border-collapse">
+                        <thead>
+                            <tr class="bg-rose-100/70 text-rose-900">
+                                <th class="p-2 rounded-l-lg">家庭與成員</th>
+                                <th class="p-2">成人票 (12歲+)</th>
+                                <th class="p-2">兒童票 (6-11歲)</th>
+                                <th class="p-2 rounded-r-lg">備註</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-rose-50 text-slate-700">
+                            <tr>
+                                <td class="p-2 font-medium">第一家 (媽媽A + 國二姊 + 小五弟)</td>
+                                <td class="p-2 text-rose-600 font-bold">2 張</td>
+                                <td class="p-2 text-emerald-600 font-bold">1 張</td>
+                                <td class="p-2 text-slate-500">國二已滿 12 歲算成人票</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 font-medium">第二家 (媽媽B + 小四哥 + 小四妹)</td>
+                                <td class="p-2 text-rose-600 font-bold">1 張</td>
+                                <td class="p-2 text-emerald-600 font-bold">2 張</td>
+                                <td class="p-2 text-slate-500">小四為兒童票（半價）</td>
+                            </tr>
+                            <tr class="bg-rose-50 font-bold text-slate-800">
+                                <td class="p-2">全團合計</td>
+                                <td class="p-2 text-rose-600">3 張</td>
+                                <td class="p-2 text-emerald-600">3 張</td>
+                                <td class="p-2">共 6 張 JR Pass 5日券</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-您可以直接把這個變更套用到 GitHub 上的 `index.html` 即可！
+            <!-- Accommodations Card -->
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-2">
+                <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-hotel text-rose-500"></i> 全程住宿安排
+                </h3>
+                <ul class="text-xs space-y-2 text-slate-700">
+                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                        <span><b>8/05 - 8/07 (2晚)：</b> Daiwa Roynet Hotel 岡山站前</span>
+                        <span class="text-slate-500">站前地下道直達</span>
+                    </li>
+                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                        <span><b>8/07 - 8/10 (3晚)：</b> 東橫INN 大阪難波</span>
+                        <span class="text-slate-500">近難波商圈</span>
+                    </li>
+                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                        <span><b>8/10 - 8/11 (1晚)：</b> 日航關西機場飯店 (Hotel Nikko)</span>
+                        <span class="text-slate-500">直通 T1 航廈</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tab: Heat Warning Strategy -->
+        <section id="tab-content-heat" class="tab-page hidden space-y-4">
+            <div class="bg-amber-500 text-white p-4 rounded-2xl shadow-sm">
+                <h2 class="font-bold text-base"><i class="fa-solid fa-sun text-yellow-200"></i> 盛夏酷暑避暑策略總則</h2>
+                <p class="text-xs text-amber-100 mt-1">日本 8 月中午高溫可達 35°C~37°C，特別規劃「黃金避暑時間」保障大人小孩體力。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 space-y-1 shadow-sm">
+                    <div class="text-rose-500 text-base font-bold"><i class="fa-solid fa-temperature-arrow-up"></i> 1. 11:30-15:30 避暑時段</div>
+                    <p class="text-slate-600">每日高溫時段皆安排於冷氣大型商場（AEON、Ario、Outlet、umie）或室內冷氣景點。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 space-y-1 shadow-sm">
+                    <div class="text-rose-500 text-base font-bold"><i class="fa-solid fa-bottle-water"></i> 2. 隨時補水降溫</div>
+                    <p class="text-slate-600">隨身攜帶涼感頸環、手持風扇、涼感濕紙巾，並在超商補充電解質飲料與鹽糖。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 space-y-1 shadow-sm">
+                    <div class="text-rose-500 text-base font-bold"><i class="fa-solid fa-clock"></i> 3. 早鳥參訪與 Single Rider</div>
+                    <p class="text-slate-600">戶外神社（吉備津、伏見稻荷）安排早鳥清晨前往；USJ 採用 Single Rider 快速排隊。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 1 (8/05) -->
+        <section id="tab-content-day1" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 1 ｜ 8/05 (三) 抵達岡山 & 站前商圈採買</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">岡山住宿</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">16:30 - 17:30 抵達入境與轉乘巴士</p>
+                    <p class="text-slate-600">岡山桃太郎機場辦理入境與拿行李 ➔ 搭乘利木津巴士至 JR 岡山站（30分鐘，780日圓）。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">17:30 - 18:30 Daiwa Roynet Hotel 入住</p>
+                    <p class="text-slate-600">走站前地下道 3 分鐘直達飯店辦理 Check-in，樓下即為 Bic Camera。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">18:30 - 20:00 晚餐：味司野村 (醬汁豬排飯)</p>
+                    <p class="text-slate-600">品嚐岡山在地獨家秘製黑醬汁豬排飯，或岡山站內 Sun Station Terrace 美食街。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">20:00 - 21:30 AEON Mall 採買當季白桃</p>
+                    <p class="text-amber-800">走地下連通道直通 AEON 超市，購買盛產的岡山白桃與晴王麝香葡萄！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 2 (8/06) -->
+        <section id="tab-content-day2" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 2 ｜ 8/06 (四) 倉敷美觀 ➔ Ario/Outlet 避暑 ➔ 兒島夕陽</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">Pass Day 1</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">09:30 - 12:00 倉敷美觀地區散步</p>
+                    <p class="text-slate-600">JR 岡山站搭電車至 JR 倉敷站（17分鐘， Pass 免費）。美觀運河搭木舟、阿智神社拍照。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">12:00 - 15:00 午餐與酷暑避暑 (Ario 倉敷 / 三井 Outlet)</p>
+                    <p class="text-amber-800">直通 Ario 倉敷與 Outlet 大型冷氣商場。享用竹清讚岐烏龍麵或古市冷烏龍麵，逛樂高專賣店。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">15:30 - 18:30 前往兒島與瀨戶內海夕陽</p>
+                    <p class="text-slate-600">JR 倉敷站搭電車至 JR 兒島站（25分鐘）➔ 轉乘下電巴士或叫計程車至鷲羽山展望台欣賞夕陽。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">19:00 - 20:30 返岡山享用晚餐</p>
+                    <p class="text-slate-600">搭乘 JR 返岡山站，於「吾妻壽司」享用岡山名物散壽司。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 3 (8/07) -->
+        <section id="tab-content-day3" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 3 ｜ 8/07 (五) 吉備津 ➔ 岡山城 ➔ 新幹線移防大阪</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">Pass Day 2</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">08:30 - 10:15 吉備津神社（清晨微涼）</p>
+                    <p class="text-slate-600">JR 岡山站搭吉備線至 JR 吉備津站（15分鐘）。參觀全日本最長 360m 木造大迴廊。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">10:30 - 12:30 岡山城 & 後樂園</p>
+                    <p class="text-slate-600">遊覽日本三大名園「後樂園」與黑色天守閣「岡山城」（城內有冷氣）。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">12:45 - 15:00 午餐與採買避暑</p>
+                    <p class="text-amber-800">返回岡山站取行李，於 AEON Mall 岡山享用午餐與最後水果採買。</p>
+                </div>
+                <!-- Shinkansen Highlight -->
+                <div class="space-y-1 border-t pt-2 bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                    <p class="font-bold text-indigo-900">15:20 - 16:04 山陽新幹線移動 (Nozomi 34 號)</p>
+                    <p class="text-indigo-800">JR 岡山站搭乘 Nozomi 34 號直達 JR 新大阪站（44 分鐘）➔ 轉地鐵御堂筋線至難波站。</p>
+                    <p class="text-indigo-900 font-bold bg-indigo-100 p-1.5 rounded mt-1">🎫 已劃位：5號車 3A / 3B / 3C 及 4A / 4B / 4C（前後排連號共 6 席）</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">16:45 飯店 Check-in & 傍晚地下街商圈</p>
+                    <p class="text-slate-600">東橫INN 大阪難波 Check-in 寄放行李 ➔ 走 Crysta Nagahori 冷氣地下街至心齋橋、道頓堀跑跑人拍照。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 4 (8/08) -->
+        <section id="tab-content-day4" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 4 ｜ 8/08 (六) 神戶異人館 ➔ umie 避暑 ➔ 港灣夜景</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">Pass Day 3</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">08:30 - 11:30 北野異人館街 & 風見雞館</p>
+                    <p class="text-slate-600">JR 大阪站搭新快速至 JR 三宮站（30分鐘， Pass 免費）。漫步異人館街、百年洋樓星巴克。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">11:30 - 13:00 午餐：Steakland 神戶牛排</p>
+                    <p class="text-slate-600">享用性價比極高、現點現做的神戶牛排超值商業午餐。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">13:30 - 17:00 下午避暑 (Harborland umie / mosaic)</p>
+                    <p class="text-amber-800">至神戶港 Harborland umie 大型冷氣商場購物歇腳，品嚐觀音屋丹麥熱起司蛋糕。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">17:30 - 20:30 MOSAIC 景觀餐廳晚餐與港灣夜景</p>
+                    <p class="text-slate-600">邊享用晚餐邊欣賞神戶港絕美神戶塔夜景 ➔ 搭 JR 返回大阪。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 5 (8/09) -->
+        <section id="tab-content-day5" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 5 ｜ 8/09 (日) 京都伏見稻荷早鳥 ➔ 返大阪動漫街/梅田</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">Pass Day 4</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">07:30 - 10:30 伏見稻荷大社（早鳥空景）</p>
+                    <p class="text-slate-600">JR 大阪站 ➔ JR 京都站 ➔ JR 稻荷站（35分鐘）。清晨漫步千本鳥居，避開人潮與高溫。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">11:00 - 12:30 京都站避暑午餐</p>
+                    <p class="text-amber-800">於京都車站 Building 10F 中村藤吉享用抹茶聖代，或拉麵小路午餐。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">13:30 - 17:00 返回大阪午後避暑購物</p>
+                    <p class="text-slate-600"><b>方案 A：</b>日本橋 animate 動漫大樓、公仔街。<b>方案 B：</b>梅田 LUCUA 百貨冷氣商場。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">18:30 - 20:30 晚餐：國產牛燒肉 Tabehoudai</p>
+                    <p class="text-slate-600">難波/心齋橋商圈享用高品質國產牛肉吃到飽。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 6 (8/10) -->
+        <section id="tab-content-day6" class="tab-page hidden space-y-3">
+            <div class="bg-indigo-100 text-indigo-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 6 ｜ 8/10 (一) 環球影城 (USJ) 攻略 ➔ 關西機場飯店</span>
+                <span class="text-xs bg-indigo-200 px-2 py-0.5 rounded">Pass Day 5</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">07:15 - 08:00 抵達影城 & APP 抽整理券</p>
+                    <p class="text-slate-600">07:15 抵達安檢，08:00 入園立即 APP 抽<b>瑪利歐整理券</b>（目標 14:00 進入）。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">08:15 - 11:00 哈利波特禁忌之旅 & 4D 冷氣影院</p>
+                    <p class="text-slate-600">走 Single Rider 單人通道（省 60 分鐘）。體驗咒術迴戰 4D 室內劇場。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">11:00 - 13:30 三根掃帚餐廳 & 水世界消暑</p>
+                    <p class="text-amber-800">哈利波特園區早午餐 ➔ 12:00 水世界特技表演（前排濕身區消暑）。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">14:00 - 16:30 超級任天堂世界</p>
+                    <p class="text-slate-600">瑪利歐賽車、奇諾比奧咖啡店室內冷氣下午茶。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-rose-50 p-2 rounded">
+                    <p class="font-bold text-rose-900">17:00 - 19:30 取大行李 ➔ 移動至機場飯店</p>
+                    <p class="text-rose-800">離園回難波取大行李 ➔ 搭乘南海特急 Rapi:t 直達關西機場 ➔ 入住日航關西機場飯店。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Day 7 (8/11) -->
+        <section id="tab-content-day7" class="tab-page hidden space-y-3">
+            <div class="bg-rose-100 text-rose-900 p-3 rounded-xl font-bold text-sm flex justify-between items-center">
+                <span>Day 7 ｜ 8/11 (二) 關西機場 T1 免稅採買 ➔ 返台 (高雄)</span>
+                <span class="text-xs bg-rose-200 px-2 py-0.5 rounded">回程搭機</span>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-rose-100 space-y-3 text-xs">
+                <div class="space-y-1">
+                    <p class="font-bold text-slate-800">08:45 飯店退房與報到</p>
+                    <p class="text-slate-600">飯店辦理 Check-out，步行 3 分鐘直達關西機場 T1 虎航櫃檯辦理報到與託運。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2 bg-amber-50 p-2 rounded">
+                    <p class="font-bold text-amber-900">09:30 - 10:45 T1 免稅店最後採買</p>
+                    <p class="text-amber-800">採買 PRESS BUTTER SAND、Royce 生巧克力、白色戀人等伴手禮。</p>
+                </div>
+                <div class="space-y-1 border-t pt-2">
+                    <p class="font-bold text-slate-800">11:15 搭乘虎航 IT213 返回高雄 (KHH)</p>
+                    <p class="text-slate-600">搭乘 11:15 航班返回高雄小港國際機場，結束愉快完美的盛夏之旅！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Recommended Restaurants -->
+        <section id="tab-content-food" class="tab-page hidden space-y-3">
+            <div class="bg-amber-500 text-white p-3 rounded-xl font-bold text-sm">
+                🍱 每日推薦美食與餐廳精選
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-amber-100 text-xs overflow-x-auto shadow-sm">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-amber-100/70 text-amber-900">
+                            <th class="p-2 rounded-l">日期/餐別</th>
+                            <th class="p-2">餐廳名稱</th>
+                            <th class="p-2">特色菜色</th>
+                            <th class="p-2 rounded-r">地點/備註</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-amber-50 text-slate-700">
+                        <tr>
+                            <td class="p-2 font-bold">8/05 晚餐</td>
+                            <td class="p-2 text-rose-600 font-bold">味司野村</td>
+                            <td class="p-2">醬汁豬排飯</td>
+                            <td class="p-2">岡山名物，近飯店</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-bold">8/06 午餐</td>
+                            <td class="p-2 text-rose-600 font-bold">竹清 讚岐烏龍麵</td>
+                            <td class="p-2">現炸半熟蛋天婦羅冷麵</td>
+                            <td class="p-2">Ario 倉敷 1F 消暑</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-bold">8/07 晚餐</td>
+                            <td class="p-2 text-rose-600 font-bold">美津の / 串炸田中</td>
+                            <td class="p-2">大阪燒 / 手作炸串章魚燒</td>
+                            <td class="p-2">道頓堀親子同樂</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-bold">8/08 午餐</td>
+                            <td class="p-2 text-rose-600 font-bold">Steakland 神戶牛</td>
+                            <td class="p-2">鐵板神戶牛超值午餐</td>
+                            <td class="p-2">神戶三宮站附近</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-bold">8/09 午餐</td>
+                            <td class="p-2 text-rose-600 font-bold">中村藤吉 / 拉麵小路</td>
+                            <td class="p-2">盛夏抹茶聖代 / 名牌拉麵</td>
+                            <td class="p-2">京都車站 10F</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tab: Shopping & Souvenirs -->
+        <section id="tab-content-shopping" class="tab-page hidden space-y-3">
+            <div class="bg-rose-500 text-white p-3 rounded-xl font-bold text-sm">
+                🛍️ 必買伴手禮與酷暑裝備
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 shadow-sm space-y-1">
+                    <h4 class="font-bold text-rose-900">🍑 岡山特產 (AEON 超市)</h4>
+                    <p class="text-slate-600">晴王麝香葡萄、岡山白桃、大手饅頭、廣榮堂吉備糰子。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 shadow-sm space-y-1">
+                    <h4 class="font-bold text-rose-900">🍵 京都大阪名產</h4>
+                    <p class="text-slate-600">551蓬萊包子、中村藤吉抹茶餅乾、Grand Calbee 厚切洋芋片。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 shadow-sm space-y-1">
+                    <h4 class="font-bold text-rose-900">⚓ 神戶洋菓子</h4>
+                    <p class="text-slate-600">神戶風月堂法蘭酥、觀音屋起司蛋糕、Frantz 魔法壺布丁。</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-rose-100 shadow-sm space-y-1">
+                    <h4 class="font-bold text-rose-900">❄️ 酷暑必備裝備</h4>
+                    <p class="text-slate-600">涼感頸環、Biore 冰涼濕紙巾、KOSE 降溫噴霧、休足時間。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab: Packing List -->
+        <section id="tab-content-packing" class="tab-page hidden space-y-3">
+            <div class="bg-emerald-600 text-white p-3 rounded-xl font-bold text-sm">
+                🧳 出國準備互動檢查表（點擊可打勾）
+            </div>
+            <div id="packing-checklist" class="bg-white p-4 rounded-xl border border-emerald-100 grid grid-cols-1 md:grid-cols-2 gap-2 text-xs shadow-sm">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center text-xs text-rose-400 py-4 border-t border-rose-100">
+        <p>🇯🇵 2026 關西山陽親子避暑之旅 ｜ 祝兩家人旅途平安愉快！</p>
+    </footer>
+
+    <script>
+        // Interactive Tab Switching Function
+        function switchTab(tabId) {
+            const pages = document.querySelectorAll('.tab-page');
+            pages.forEach(page => page.classList.add('hidden'));
+
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-[#3D2C2E]', 'shadow-sm');
+                btn.classList.add('bg-white/15', 'text-rose-100');
+            });
+
+            const activePage = document.getElementById(`tab-content-${tabId}`);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            }
+
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white/15', 'text-rose-100');
+                activeBtn.classList.add('bg-white', 'text-[#3D2C2E]', 'shadow-sm');
+            }
+
+            // Scroll page back to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize Packing Checklist
+        const packingData = [
+            "護照正本（效期 6 個月以上）", "虎航來回機票憑證截圖", 
+            "Visit Japan Web 入境 QR Code", "JR Pass 5日券 QR Code", 
+            "USJ 門票與整理券 APP", "日幣現金 & 海外信用卡 2 張", 
+            "抗 UV 折疊遮陽傘", "手持小電風扇 + 充電線", 
+            "涼感頸環 / 涼感巾", "高係數防曬乳 & 太陽眼鏡", 
+            "行動电源 2 台", "常備藥品 & 休足時間"
+        ];
+
+        function initPackingList() {
+            const container = document.getElementById('packing-checklist');
+            if (!container) return;
+
+            packingData.forEach((item, index) => {
+                const label = document.createElement('label');
+                label.className = "flex items-center space-x-2 p-2 hover:bg-rose-50 rounded cursor-pointer transition-colors";
+                label.innerHTML = `
+                    <input type="checkbox" class="rounded text-rose-500 focus:ring-rose-400 w-4 h-4">
+                    <span class="text-slate-700">${item}</span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        // Window Load Initialization
+        window.onload = function() {
+            initPackingList();
+        };
+    </script>
+</body>
+</html>
