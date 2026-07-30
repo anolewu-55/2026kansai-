@@ -8,12 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font Inter / Noto Sans TC -->
+    <!-- Google Font Noto Sans TC -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #FFF7F5; /* 水蜜桃白底 */
+            background-color: #FFF7F5;
             color: #4A3E3D;
         }
         .hide-scrollbar::-webkit-scrollbar {
@@ -23,17 +23,19 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        .peach-bg-gradient {
+        .peach-gradient {
             background: linear-gradient(135deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
         }
-        .peach-card-gradient {
-            background: linear-gradient(135deg, #FFF3F0 0%, #FFEBE5 100%);
+        .active-tab {
+            background-color: #FFFFFF !important;
+            color: #3D2C2E !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col pb-12">
 
-    <!-- Top Header & Navigation Bar (Styled like user reference) -->
+    <!-- Header Bar -->
     <header class="sticky top-0 z-50 bg-[#3D2C2E] text-white shadow-md">
         <!-- Main Title Bar -->
         <div class="px-4 pt-3 pb-2 flex items-center justify-between border-b border-white/10">
@@ -44,17 +46,14 @@
             <span class="text-[11px] bg-rose-500/80 text-rose-100 px-2.5 py-0.5 rounded-full font-medium">2家6人親子團</span>
         </div>
 
-        <!-- Horizontal Scrollable Date & Category Pills -->
+        <!-- Scrollable Navigation Pills -->
         <div class="px-3 py-2.5 overflow-x-auto hide-scrollbar flex items-center space-x-2 text-xs">
-            <!-- Summary Tab -->
-            <button onclick="switchTab('overview')" id="nav-overview" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold transition-all bg-white text-[#3D2C2E] shadow-sm">
+            <button onclick="switchTab('overview')" id="nav-overview" class="nav-btn active-tab whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold transition-all bg-white/15 text-rose-100 hover:bg-white/25">
                 📋 概要與機票
             </button>
             <button onclick="switchTab('heat')" id="nav-heat" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-bold transition-all bg-white/15 text-rose-100 hover:bg-white/25">
                 ☀️ 避暑策略
             </button>
-
-            <!-- Date Tabs -->
             <button onclick="switchTab('day1')" id="nav-day1" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
                 8/05 (三)
             </button>
@@ -76,8 +75,6 @@
             <button onclick="switchTab('day7')" id="nav-day7" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
                 8/11 (二)
             </button>
-
-            <!-- Extra Tabs -->
             <button onclick="switchTab('food')" id="nav-food" class="nav-btn whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all bg-white/15 text-rose-100 hover:bg-white/25">
                 🍱 美食餐廳
             </button>
@@ -90,36 +87,48 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="max-w-3xl mx-auto w-full px-4 pt-4 flex-grow">
 
-        <!-- Tab: Overview & Flight Info -->
+        <!-- Tab: Overview -->
         <section id="tab-content-overview" class="tab-page space-y-4">
-            <!-- Top Announcement Banner -->
-            <div class="bg-rose-500 text-white p-3 rounded-2xl shadow-sm flex items-center space-x-3">
-                <div class="bg-white/20 p-2 rounded-xl text-lg"><i class="fa-solid fa-plane-departure"></i></div>
+            <!-- Banner Card -->
+            <div class="peach-gradient text-white p-4 rounded-2xl shadow-sm flex items-center space-x-3">
+                <div class="bg-white/20 p-2.5 rounded-xl text-xl"><i class="fa-solid fa-plane-departure"></i></div>
                 <div>
-                    <h2 class="font-bold text-sm">2026 盛夏關西山陽避暑 7 日遊</h2>
-                    <p class="text-xs text-rose-100">旅行日期：2026/08/05 (三) ～ 2026/08/11 (二)</p>
+                    <h2 class="font-bold text-base">2026 盛夏關西山陽避暑 7 日遊</h2>
+                    <p class="text-xs text-rose-100 mt-0.5">旅行日期：2026/08/05 (三) ～ 2026/08/11 (二)</p>
                 </div>
             </div>
 
-            <!-- Flights Information Card -->
+            <!-- Highlighted Ticket Card -->
+            <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-300 shadow-sm space-y-2">
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-train text-emerald-600 mr-1"></i> 8/07 山陽新幹線已劃位車票憑證</span>
+                    <span class="text-[11px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-bold">已劃位成功</span>
+                </div>
+                <div class="text-xs space-y-1.5 text-slate-700 bg-white p-3 rounded-xl border border-emerald-100">
+                    <p class="font-bold text-slate-900 text-sm">班次：Nozomi 34 號 (岡山 15:20 發 ➔ 新大阪 16:04 抵)</p>
+                    <p class="text-slate-800 font-bold bg-emerald-100/60 p-2 rounded-lg text-xs">
+                        🎫 座位：5號車 3A / 3B / 3C 與 4A / 4B / 4C（全團 6 人前後排連號）
+                    </p>
+                    <p class="text-slate-500 text-[11px] pt-1">• 8/05 抵達岡山站後，使用綠色售票機感應護照領取實體票即可進站。</p>
+                </div>
+            </div>
+
+            <!-- Flights Card -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-3">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-ticket text-rose-500"></i> ✈️ 台灣虎航 (Tigerair) 來回機票資訊
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                    <!-- Outbound -->
                     <div class="bg-orange-50/70 p-3 rounded-xl border border-orange-100 space-y-1">
                         <div class="flex justify-between items-center text-orange-900 font-bold">
                             <span>去程：高雄 (KHH) ➔ 岡山 (OKJ)</span>
                             <span class="bg-orange-200 text-orange-800 px-1.5 py-0.5 rounded text-[10px]">8/05 (三)</span>
                         </div>
                         <p class="text-slate-600">航班時間：依虎航最新航班時刻為準</p>
-                        <p class="text-slate-500 text-[11px]">抵達後搭乘利木津巴士直達 JR 岡山站（30分鐘）。</p>
+                        <p class="text-slate-500 text-[11px]">抵達後搭利木津巴士直達 JR 岡山站（30分鐘）。</p>
                     </div>
-                    <!-- Inbound -->
                     <div class="bg-rose-50/70 p-3 rounded-xl border border-rose-100 space-y-1">
                         <div class="flex justify-between items-center text-rose-900 font-bold">
                             <span>回程：關西 (KIX) ➔ 高雄 (KHH)</span>
@@ -131,25 +140,12 @@
                 </div>
             </div>
 
-            <!-- Shinkansen Ticket Confirmation Card (Updated) -->
-            <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 shadow-sm space-y-2">
-                <div class="flex items-center justify-between">
-                    <span class="font-bold text-emerald-900 text-sm"><i class="fa-solid fa-train text-emerald-600"></i> 8/07 山陽新幹線已劃位車票憑證</span>
-                    <span class="text-[11px] bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded font-bold">已劃位成功</span>
-                </div>
-                <div class="text-xs space-y-1 text-slate-700">
-                    <p class="font-bold text-slate-800">車次：Nozomi 34 號 (岡山 15:20 發 ➔ 新大阪 16:04 抵)</p>
-                    <p class="text-slate-600">座位：<b>5號車 3A / 3B / 3C</b> 與 <b>4A / 4B / 4C</b>（全團 6 人連號前後排）</p>
-                    <p class="text-slate-500 text-[11px]">• 8/05 抵達岡山站綠色售票機領取實體車票即可進站。</p>
-                </div>
-            </div>
-
-            <!-- Members & JR Pass Overview -->
+            <!-- Members & Pass Card -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-3">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-users text-rose-500"></i> 成員票種與 JR Pass 5日券說明
                 </h3>
-                <p class="text-xs text-slate-600">启用日期：<b>2026/08/06 (四) ～ 2026/08/10 (一)</b>（連續 5 日）</p>
+                <p class="text-xs text-slate-600">啟用日期：<b>2026/08/06 (四) ～ 2026/08/10 (一)</b>（連續 5 日）</p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-xs text-left border-collapse">
                         <thead>
@@ -184,29 +180,29 @@
                 </div>
             </div>
 
-            <!-- Accommodations Card -->
+            <!-- Accommodations -->
             <div class="bg-white p-4 rounded-2xl shadow-sm border border-rose-100 space-y-2">
                 <h3 class="font-bold text-slate-800 text-sm flex items-center gap-2">
                     <i class="fa-solid fa-hotel text-rose-500"></i> 全程住宿安排
                 </h3>
                 <ul class="text-xs space-y-2 text-slate-700">
-                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                    <li class="p-2.5 bg-slate-50 rounded-lg flex justify-between items-center">
                         <span><b>8/05 - 8/07 (2晚)：</b> Daiwa Roynet Hotel 岡山站前</span>
-                        <span class="text-slate-500">站前地下道直達</span>
+                        <span class="text-slate-500 text-[11px] bg-slate-200 px-2 py-0.5 rounded">地下道直達</span>
                     </li>
-                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                    <li class="p-2.5 bg-slate-50 rounded-lg flex justify-between items-center">
                         <span><b>8/07 - 8/10 (3晚)：</b> 東橫INN 大阪難波</span>
-                        <span class="text-slate-500">近難波商圈</span>
+                        <span class="text-slate-500 text-[11px] bg-slate-200 px-2 py-0.5 rounded">近難波商圈</span>
                     </li>
-                    <li class="p-2 bg-slate-50 rounded-lg flex justify-between">
+                    <li class="p-2.5 bg-slate-50 rounded-lg flex justify-between items-center">
                         <span><b>8/10 - 8/11 (1晚)：</b> 日航關西機場飯店 (Hotel Nikko)</span>
-                        <span class="text-slate-500">直通 T1 航廈</span>
+                        <span class="text-slate-500 text-[11px] bg-slate-200 px-2 py-0.5 rounded">直通 T1 航廈</span>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- Tab: Heat Warning Strategy -->
+        <!-- Tab: Heat Strategy -->
         <section id="tab-content-heat" class="tab-page hidden space-y-4">
             <div class="bg-amber-500 text-white p-4 rounded-2xl shadow-sm">
                 <h2 class="font-bold text-base"><i class="fa-solid fa-sun text-yellow-200"></i> 盛夏酷暑避暑策略總則</h2>
@@ -216,7 +212,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
                 <div class="bg-white p-3.5 rounded-xl border border-rose-100 space-y-1 shadow-sm">
                     <div class="text-rose-500 text-base font-bold"><i class="fa-solid fa-temperature-arrow-up"></i> 1. 11:30-15:30 避暑時段</div>
-                    <p class="text-slate-600">每日高溫時段皆安排於冷氣大型商場（AEON、Ario、Outlet、umie）或室內冷氣景點。</p>
+                    <p class="text-slate-600">每日高溫時段安排於冷氣大型商場（AEON、Ario、Outlet、umie）或室內冷氣景點。</p>
                 </div>
                 <div class="bg-white p-3.5 rounded-xl border border-rose-100 space-y-1 shadow-sm">
                     <div class="text-rose-500 text-base font-bold"><i class="fa-solid fa-bottle-water"></i> 2. 隨時補水降溫</div>
@@ -300,11 +296,10 @@
                     <p class="font-bold text-amber-900">12:45 - 15:00 午餐與採買避暑</p>
                     <p class="text-amber-800">返回岡山站取行李，於 AEON Mall 岡山享用午餐與最後水果採買。</p>
                 </div>
-                <!-- Shinkansen Highlight -->
-                <div class="space-y-1 border-t pt-2 bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
-                    <p class="font-bold text-indigo-900">15:20 - 16:04 山陽新幹線移動 (Nozomi 34 號)</p>
-                    <p class="text-indigo-800">JR 岡山站搭乘 Nozomi 34 號直達 JR 新大阪站（44 分鐘）➔ 轉地鐵御堂筋線至難波站。</p>
-                    <p class="text-indigo-900 font-bold bg-indigo-100 p-1.5 rounded mt-1">🎫 已劃位：5號車 3A / 3B / 3C 及 4A / 4B / 4C（前後排連號共 6 席）</p>
+                <div class="space-y-1 border-t pt-2 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+                    <p class="font-bold text-emerald-900">15:20 - 16:04 山陽新幹線移動 (Nozomi 34 號)</p>
+                    <p class="text-emerald-800">JR 岡山站搭乘 Nozomi 34 號直達 JR 新大阪站（44 分鐘）➔ 轉地鐵御堂筋線至難波站。</p>
+                    <p class="text-emerald-900 font-bold bg-emerald-100 p-1.5 rounded mt-1">🎫 已劃位：5號車 3A / 3B / 3C 及 4A / 4B / 4C（前後排連號共 6 席）</p>
                 </div>
                 <div class="space-y-1 border-t pt-2">
                     <p class="font-bold text-slate-800">16:45 飯店 Check-in & 傍晚地下街商圈</p>
@@ -417,7 +412,7 @@
             </div>
         </section>
 
-        <!-- Tab: Recommended Restaurants -->
+        <!-- Tab: Food -->
         <section id="tab-content-food" class="tab-page hidden space-y-3">
             <div class="bg-amber-500 text-white p-3 rounded-xl font-bold text-sm">
                 🍱 每日推薦美食與餐廳精選
@@ -468,7 +463,7 @@
             </div>
         </section>
 
-        <!-- Tab: Shopping & Souvenirs -->
+        <!-- Tab: Shopping -->
         <section id="tab-content-shopping" class="tab-page hidden space-y-3">
             <div class="bg-rose-500 text-white p-3 rounded-xl font-bold text-sm">
                 🛍️ 必買伴手禮與酷暑裝備
@@ -510,41 +505,42 @@
         <p>🇯🇵 2026 關西山陽親子避暑之旅 ｜ 祝兩家人旅途平安愉快！</p>
     </footer>
 
+    <!-- Interactive Scripts -->
     <script>
-        // Interactive Tab Switching Function
         function switchTab(tabId) {
+            // Hide all tab pages
             const pages = document.querySelectorAll('.tab-page');
             pages.forEach(page => page.classList.add('hidden'));
 
+            // Remove active styling from all buttons
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => {
-                btn.classList.remove('bg-white', 'text-[#3D2C2E]', 'shadow-sm');
-                btn.classList.add('bg-white/15', 'text-rose-100');
+                btn.classList.remove('active-tab');
             });
 
+            // Show selected page
             const activePage = document.getElementById(`tab-content-${tabId}`);
             if (activePage) {
                 activePage.classList.remove('hidden');
             }
 
+            // Highlight selected button
             const activeBtn = document.getElementById(`nav-${tabId}`);
             if (activeBtn) {
-                activeBtn.classList.remove('bg-white/15', 'text-rose-100');
-                activeBtn.classList.add('bg-white', 'text-[#3D2C2E]', 'shadow-sm');
+                activeBtn.classList.add('active-tab');
             }
 
-            // Scroll page back to top
+            // Smooth scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialize Packing Checklist
         const packingData = [
             "護照正本（效期 6 個月以上）", "虎航來回機票憑證截圖", 
             "Visit Japan Web 入境 QR Code", "JR Pass 5日券 QR Code", 
             "USJ 門票與整理券 APP", "日幣現金 & 海外信用卡 2 張", 
             "抗 UV 折疊遮陽傘", "手持小電風扇 + 充電線", 
             "涼感頸環 / 涼感巾", "高係數防曬乳 & 太陽眼鏡", 
-            "行動电源 2 台", "常備藥品 & 休足時間"
+            "行動電源 2 台", "常備藥品 & 休足時間"
         ];
 
         function initPackingList() {
@@ -562,10 +558,21 @@
             });
         }
 
-        // Window Load Initialization
         window.onload = function() {
             initPackingList();
         };
     </script>
 </body>
 </html>
+```
+
+---
+
+### 📲 如何簡單覆蓋上傳：
+
+1. 將上面的完整代碼複製，在電腦上儲存為名為 **`index.html`** 的檔案。
+2. 開啟 GitHub 中的 **`2026KANSAI`** 專案頁面。
+3. 點選右上角 **`Add file` ➔ `Upload files`**。
+4. 將剛才存好的 `index.html` 拖放進大框框裡，點擊綠色的 **`Commit changes`**。
+
+等約 1 分鐘後重新刷網址，精美的水蜜桃風格親子手冊就會完美呈現在您的手機上了！
